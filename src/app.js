@@ -5,9 +5,7 @@ const app = express();
 app.use(express.json())
 
 app.get('/api/products', async (req, res)=>{
-
     const {limit} = req.query;
-
     try{
         const products = await productManager.getProducts(req.query);
         if(limit){
@@ -18,12 +16,7 @@ app.get('/api/products', async (req, res)=>{
         }
     } catch (error){
         res.status(500).json({message: error.message})
-    }
-
-    
-})
-
-
+    }})
 
 app.get('/api/product/:id', async(req, res)=>{
     const {id} = req.params;

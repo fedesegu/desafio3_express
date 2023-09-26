@@ -20,16 +20,14 @@ class ProductManager {
     
     async addProduct(productoCreado){
       
-        try { //primero hay que leer el archivo 
+        try {  
             let id
             if(!products.length){
                 id = 1
             } else {
                 id = products[products.length-1].id+1
             }
-           
-            products.push({id,...productoCreado}) //id + todo lo que venga en user
-            //let products0 = await this.getProducts()
+            products.push({id,...productoCreado}) 
             await fs.promises.writeFile(this.path, JSON.stringify(products))
         }
         catch(error){
@@ -67,7 +65,6 @@ class ProductManager {
       return
     }}}
 
-
 const producto1 = {
     title: 'Empanadas',
     description: 'Comida',
@@ -98,16 +95,5 @@ producto.addProduct(producto2);
 producto.addProduct(producto3);
 
 console.log(products);
-
-
-// console.log(producto.updateProduct({
-//     title:'fideos',
-//     description: 'comida',
-//     price: 400,
-//     thumbnail: 'http://...',
-//     code: 'Codigo002',
-//     stock: 200,
-//     id: 1
-// }))
 
 export const productManager = new ProductManager()
